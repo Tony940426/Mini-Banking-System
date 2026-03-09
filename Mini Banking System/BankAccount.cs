@@ -19,7 +19,7 @@ namespace Mini_Banking_System
             {
                 throw new ArgumentException("Deposit amount must be positive.");
             }
-            Balance += amount;
+            Balance = amount;
             return Balance;
         }
 

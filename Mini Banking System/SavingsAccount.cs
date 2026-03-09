@@ -38,7 +38,7 @@ namespace Mini_Banking_System
         public override void DisplayAccountInfo()
         {
             base.DisplayAccountInfo();
-            Console.WriteLine($"Balance with interest applied of {InterestRate}%");
+            Console.WriteLine($"Interest rate of {InterestRate}%\n");
         }
     }
 }

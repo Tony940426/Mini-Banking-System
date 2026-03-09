@@ -12,21 +12,25 @@ namespace Mini_Banking_System
         public decimal OverdraftLimit { get; set; }
         public override decimal Withdraw(decimal amount)
         {
-            decimal totalAmount = OverdraftLimit + this.Balance;
-            if (totalAmount < amount)
+            if (amount < 0)
             {
-                throw new ArgumentException("Withdrawal exceeds overdraft limit");
+                throw new ArgumentException("Withdrawal amount must be positive.");
+            }
+
+            if (Balance + OverdraftLimit < amount)
+            {
+                throw new ArgumentException("Withdrawal exceeds bank balance and overdraft limit");
             }
             else
             {
-                return this.Balance - amount;
+                return Balance - amount;
             }
         }
 
         public override void DisplayAccountInfo()
         {
             base.DisplayAccountInfo();
-            Console.WriteLine($"Overdraft limit of ${OverdraftLimit}");
+            Console.WriteLine($"Overdraft limit of ${OverdraftLimit:C}\n");
         }
     }
 }
