@@ -10,8 +10,8 @@ namespace Mini_Banking_System
     {
         public string AccountNumber { get; set; }
         public string HolderName { get; set; }
-        public decimal Balance { get; protected set; }
-        public abstract decimal WithDraw(decimal amount);
+        public decimal Balance { get; set; } = 0;
+        public abstract decimal Withdraw(decimal amount);
 
         public decimal Deposit(decimal amount)
         {
@@ -31,4 +31,4 @@ namespace Mini_Banking_System
         }
     }
 
-};
+}
