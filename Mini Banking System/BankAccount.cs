@@ -8,8 +8,8 @@ namespace Mini_Banking_System
 {
     public abstract class BankAccount
     {
-        public string AccountNumber { get; set; }
-        public string HolderName { get; set; }
+        public  string AccountNumber { get; set; }
+        public  string HolderName { get; set; }
         public decimal Balance { get; set; } = 0;
         public abstract decimal Withdraw(decimal amount);
 
