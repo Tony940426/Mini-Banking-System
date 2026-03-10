@@ -8,5 +8,6 @@ namespace Mini_Banking_System
 {
     public interface ITransactionLogger
     {
+        void Log(string message);
     }
 }

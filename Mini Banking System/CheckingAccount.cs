@@ -9,7 +9,12 @@ namespace Mini_Banking_System
 {
     public class CheckingAccount : BankAccount
     {
-        public decimal OverdraftLimit { get; set; }
+        private static decimal OverdraftLimit = 1000;
+
+        public CheckingAccount(string accountNumber, string HolderName) : base(accountNumber, HolderName)
+        {
+            
+        }
         public override decimal Withdraw(decimal amount)
         {
             if (amount < 0)
@@ -30,7 +35,7 @@ namespace Mini_Banking_System
         public override void DisplayAccountInfo()
         {
             base.DisplayAccountInfo();
-            Console.WriteLine($"Overdraft limit of ${OverdraftLimit:C}\n");
+            Console.Write($" Overdraft limit = {OverdraftLimit:C}\n");
         }
     }
 }

@@ -8,11 +8,11 @@ namespace Mini_Banking_System
 {
     internal class SavingsAccount : BankAccount
     {
-        public decimal InterestRate { get; set; }
+        private decimal InterestRate = 5;
 
-        public SavingsAccount() : base()
+        public SavingsAccount(string AccountNumber, string HolderName) : base(AccountNumber, HolderName) 
         {
-            
+               
         }
 
         public override decimal Withdraw(decimal amount)
@@ -38,7 +38,7 @@ namespace Mini_Banking_System
         public override void DisplayAccountInfo()
         {
             base.DisplayAccountInfo();
-            Console.WriteLine($"Interest rate of {InterestRate}%\n");
+            Console.Write($" Interest rate of {InterestRate}%\n");
         }
     }
 }

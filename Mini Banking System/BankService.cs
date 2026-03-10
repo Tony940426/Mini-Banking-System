@@ -19,8 +19,17 @@ namespace Mini_Banking_System
 
         public void AddBankAccount(BankAccount account)
         {
+            if (_bankAccounts.Contains(account)) {
+                throw new ArgumentException("Account number already exists");
+            }
+
+            if(account == null) {
+                throw new ArgumentException("Please enter a account number");
+            }
+
+
             _bankAccounts.Add(account);
-            _logger.Log($"Bank account added {account.AccountNumber}");
+            _logger.Log($"Added Account: {account.AccountNumber}({account.HolderName})");
         }
 
         public void Deposit(string accountNumber, decimal amount)
@@ -30,21 +39,48 @@ namespace Mini_Banking_System
                 throw new ArgumentException("No account number entered");
             }
 
-            if (amount <= 0 )
-            {
-                throw new ArgumentException("Deposit must be greated than 0");
+            if (amount <= 0) {             
+                throw new ArgumentException("Deposit must be greater than 0");
             }
 
             BankAccount userBankAccount = _bankAccounts.FirstOrDefault(a => a.AccountNumber == accountNumber);
 
-            if (userBankAccount == null) 
-            {
+            if (userBankAccount == null){
                 throw new ArgumentException("No account found");
             }
 
             userBankAccount.Deposit(amount);
-            _logger.Log($"Deposted {amount:C} into account: {userBankAccount}");
+            _logger.Log($"Depost {amount:C} into {userBankAccount.AccountNumber}. Balance: {userBankAccount.Balance:C}");
 
+        }
+
+        public void Withdraw(string accountNumber, decimal amount)
+        {
+            if (string.IsNullOrEmpty(accountNumber)) {
+                throw new ArgumentException("No account number entered");
+            }
+
+            if (amount <= 0) {
+                throw new ArgumentException("Withdraw must be greater than 0");
+            }
+
+            BankAccount userBankAccount = _bankAccounts.FirstOrDefault(a => a.AccountNumber == accountNumber);
+
+            if (userBankAccount == null)
+               throw new ArgumentException("No account found");
+
+            userBankAccount.Withdraw(amount);
+            _logger.Log($"Withdraw {amount:C} from {userBankAccount.AccountNumber}. Balance: {userBankAccount.Balance:C}");
+            
+        }
+
+        public void PrintAllSummary() {
+            Console.WriteLine("");
+            Console.WriteLine("---ACCOUNT SUMMARIES---");
+
+            foreach (var account in _bankAccounts) {
+                account.DisplayAccountInfo();
+            }
         }
     }
 }

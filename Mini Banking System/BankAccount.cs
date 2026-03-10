@@ -8,9 +8,15 @@ namespace Mini_Banking_System
 {
     public abstract class BankAccount
     {
-        public  string AccountNumber { get; set; }
-        public  string HolderName { get; set; }
-        public decimal Balance { get; set; } = 0;
+
+        public  string AccountNumber { get; }
+        public  string HolderName { get; }
+        public decimal Balance { get; protected set; } = 0;
+        protected BankAccount(string accountNumber, string holderName)
+        {
+            AccountNumber = accountNumber;
+            HolderName = holderName;
+        }
         public abstract decimal Withdraw(decimal amount);
 
         public decimal Deposit(decimal amount)
@@ -25,9 +31,9 @@ namespace Mini_Banking_System
 
         public virtual void DisplayAccountInfo()
         {
-            Console.WriteLine($"Account Number: {AccountNumber}");
-            Console.WriteLine($"Holder Name: {HolderName}");
-            Console.WriteLine($"Balance: {Balance:C}");
+            Console.Write($"Account Number: {AccountNumber} |");
+            Console.Write($" Holder Name: {HolderName} |");
+            Console.Write($" Balance: {Balance:C} |");
         }
     }
 
