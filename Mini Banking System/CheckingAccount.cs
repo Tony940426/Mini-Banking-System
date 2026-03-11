@@ -9,7 +9,7 @@ namespace Mini_Banking_System
 {
     public class CheckingAccount : BankAccount
     {
-        private static decimal OverdraftLimit = 1000;
+        public static decimal OverdraftLimit = 1000;
 
         public CheckingAccount(string accountNumber, string HolderName) : base(accountNumber, HolderName)
         {
