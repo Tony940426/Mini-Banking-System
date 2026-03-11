@@ -20,14 +20,13 @@ namespace Mini_Banking_System
 
         public void AddBankAccount(BankAccount account)
         {
-            if (_bankAccounts.Contains(account)) {
-                throw new ArgumentException("Account number already exists");
-            }
-
             if(account == null) {
                 throw new ArgumentException("Please enter a account number");
             }
 
+            if (_bankAccounts.Contains(account)) {
+                throw new ArgumentException("Account number already exists");
+            }
 
             _bankAccounts.Add(account);
             _logger.Log($"Added Account: {account.AccountNumber}({account.HolderName})");
