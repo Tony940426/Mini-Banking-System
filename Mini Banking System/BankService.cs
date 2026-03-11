@@ -101,7 +101,7 @@ namespace Mini_Banking_System
 
         private bool CheckAccountHasSufficientBalance(BankAccount debitaccount, decimal amount)
         {
-            return debitaccount.Balance >= amount;
+            return debitaccount.canWithdraw(amount);
         }
 
         private void ValidateTransferInputs(BankAccount debitaccount, BankAccount creditaccount, decimal amount)

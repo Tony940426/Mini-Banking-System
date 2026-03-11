@@ -9,7 +9,7 @@ namespace Mini_Banking_System
 {
     public class CheckingAccount : BankAccount
     {
-        public static decimal OverdraftLimit = 1000;
+        public decimal OverdraftLimit { get; private set; } = 1000;
 
         public CheckingAccount(string accountNumber, string HolderName) : base(accountNumber, HolderName)
         {
@@ -22,14 +22,20 @@ namespace Mini_Banking_System
                 throw new ArgumentException("Withdrawal amount must be positive.");
             }
 
-            if (Balance + OverdraftLimit < amount)
+            if (amount > Balance + OverdraftLimit)
             {
                 throw new ArgumentException("Withdrawal exceeds bank balance and overdraft limit");
             }
             else
             {
-                return Balance - amount;
+                Balance -= amount;
+                return Balance;
             }
+        }
+
+        public override bool canWithdraw(decimal amount)
+        {
+            return amount <= Balance + OverdraftLimit;
         }
 
         public override void DisplayAccountInfo()
